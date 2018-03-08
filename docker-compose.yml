@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    php:
+        build:
+            context: php7-apache # folder name
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${APP_PATH}:/var/www/html
+        ports:
+          - 80:80
