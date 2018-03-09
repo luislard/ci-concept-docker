@@ -2,11 +2,14 @@
 
 # Set environment variables for dev or CI
 export APP_PORT=${APP_PORT:-80}
+
+# These variables are not necessary for this project
 export DB_PORT=${DB_PORT:-3306}
 export DB_ROOT_PASS=${DB_ROOT_PASS:-secret}
 export DB_NAME=${DB_NAME:-helpspot}
 export DB_USER=${DB_USER:-helpspot}
 export DB_PASS=${DB_PASS:-secret}
+# end of unnecessary variables for the project
 
 # Decide which docker-compose file to use
 COMPOSE_FILE="dev"
@@ -28,8 +31,7 @@ if [ $# -gt 0 ];then
     # inside a new container
     if [ "$1" == "composer" ]; then
         shift 1
-        $COMPOSE run --rm $TTY \
-            -w /var/www/html \
+        $COMPOSE exec $TTY \
             php \
             composer "$@"
 
@@ -44,7 +46,7 @@ if [ $# -gt 0 ];then
 
     elif [ "$1" == "t" ]; then
         shift 1
-        $COMPOSE exec \
+        $COMPOSE exec $TTY \
             php \
             sh -c "cd /var/www/html && ./vendor/bin/phpunit $@"
 
