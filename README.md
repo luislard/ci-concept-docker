@@ -35,14 +35,15 @@ chmod +x ci-concept-docker/develop
 
 Being inside the ci-concept-docker.
 
-### Create the Stack
-
 ```bash
-# Shortcut to docker-compose ps
+# Check if the stack is active (shortcut to docker-compose ps)
 ./develop
 
 # Create the stack (shortcut to docker-compose up -d)
 ./develop up -d
+
+## Note: If you want to change the default port to 90 instead of 80 do the following.
+APP_PORT=90 ./develop up -d
 
 # Install composer dependencies (shortcut to docker-compose exec php bash -c "composer install")
 ./develop composer install
