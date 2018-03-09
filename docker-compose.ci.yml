@@ -1,0 +1,6 @@
+version: '2'
+services:
+  php:
+    extends:
+      file: docker-compose.base.yml
+      service: php

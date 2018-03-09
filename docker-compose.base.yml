@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    php:
+        build:
+            context: php7-apache # folder name
+            dockerfile: Dockerfile # the name of the Docker
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${APP_PATH}:/var/www/html # APP_PATH should be relative to this docker-compose file
