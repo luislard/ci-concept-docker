@@ -34,6 +34,8 @@ fi
 
 REGULAR_PATH="docker-compose.$COMPOSE_FILE.yml"
 
+echo "$STAGING_PATH$REGULAR_PATH"
+
 COMPOSE="docker-compose -f $STAGING_PATH$REGULAR_PATH"
 
 # If we pass any arguments...
