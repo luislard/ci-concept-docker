@@ -16,13 +16,23 @@ COMPOSE_FILE="dev"
 
 # Disable pseudo-TTY allocation for CI (Jenkins)
 TTY=""
+STAGING_PATH=""
+
+# Disable PROD_PATH to be able to work on deploy
 
 if [ ! -z "$BUILD_NUMBER" ]; then
     COMPOSE_FILE="ci"
     TTY="-T"
 fi
 
-COMPOSE="docker-compose -f docker-compose.$COMPOSE_FILE.yml"
+if [ ! -z "$PRODSTAGING" ]; then
+    STAGING_PATH="/home/ubuntu/ci-concept-docker"
+    # TODO docker-compose for staging
+    COMPOSE_FILE="dev"
+    TTY="-T"
+fi
+
+COMPOSE="docker-compose -f $STAGING_PATH/docker-compose.$COMPOSE_FILE.yml"
 
 # If we pass any arguments...
 if [ $# -gt 0 ];then
