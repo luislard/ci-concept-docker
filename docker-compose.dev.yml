@@ -5,4 +5,4 @@ services:
       file: docker-compose.base.yml # relative to this file
       service: php
     ports:
-     - "${APP_PORT}:80"
+     - ${APP_PORT}:80
